@@ -1,0 +1,14 @@
+<app-trade-filter (updateFilters)="state.updateFilters($event)"></app-trade-filter>
+<button class="create-btn" nz-button nzType="primary" (click)="openForm()">Create</button>
+<app-trade-table
+  [rows]="(state.rows$ | async)!"
+  (edit)="openForm($event)"
+  (delete)="state.delete($event)"
+></app-trade-table>
+
+<app-trade-form
+  *ngIf="isOpenForm"
+  [data]="editRow"
+  (submit)="closeForm(); state.upsert($event)"
+  (cancel)="closeForm()"
+></app-trade-form>

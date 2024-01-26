@@ -1,0 +1,45 @@
+<nz-modal [nzVisible]="true" [nzTitle]="title" (nzOnCancel)="this.cancel.emit()" (nzOnOk)="send()">
+  <form nz-form [formGroup]="form" (ngSubmit)="send()" *nzModalContent>
+    <div class="validation-error">
+      {{ form.getError('dates') && 'Entry Date should be less than Exit Date' }}
+    </div>
+
+    <nz-form-item>
+      <nz-form-label>Entry Date</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-date-picker
+          nzShowTime
+          formControlName="entryDate"
+          [nzDisabledDate]="entryDateDisabledDate"
+          [nzDisabledTime]="entryDateDisabledDateTime"
+        ></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>Exit Date</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-date-picker
+          nzShowTime
+          formControlName="exitDate"
+          [nzDisabledDate]="exitDateDisabledDate"
+          [nzDisabledTime]="exitDateDisabledDateTime"
+        ></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>Entry Price</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-input-number formControlName="entryPrice" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>Exit Price</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-input-number formControlName="exitPrice" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>

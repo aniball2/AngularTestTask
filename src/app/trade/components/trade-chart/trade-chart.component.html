@@ -1,0 +1,14 @@
+<apx-chart
+  *ngIf="data.length; else empty"
+  [series]="chartOptions.series!"
+  [chart]="chartOptions.chart!"
+  [xaxis]="chartOptions.xaxis!"
+  [dataLabels]="chartOptions.dataLabels!"
+  [grid]="chartOptions.grid!"
+  [stroke]="chartOptions.stroke!"
+  [title]="chartOptions.title!"
+></apx-chart>
+
+<ng-template #empty>
+  <nz-empty nzNotFoundImage="simple"></nz-empty>
+</ng-template>

@@ -1,0 +1,40 @@
+<form nz-form [formGroup]="form" nzLayout="inline">
+  <nz-form-item>
+    <nz-form-label>Entry Date</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-date-picker nzShowTime formControlName="entryDate"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Exit Date</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-date-picker nzShowTime formControlName="exitDate"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Entry Price</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-input-number formControlName="entryPrice" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Exit Price</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-input-number formControlName="exitPrice" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Profit</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-input-number formControlName="profit" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <button nz-button (click)="reset()">Reset</button>
+  </nz-form-item>
+</form>

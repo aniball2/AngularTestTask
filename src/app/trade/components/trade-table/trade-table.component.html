@@ -1,0 +1,36 @@
+<nz-table [nzBordered]="true" [nzData]="rows" [nzPageSize]="10" #table>
+  <thead>
+    <tr>
+      <th>Entry Date</th>
+      <th>Exit Date</th>
+      <th>Entry Price</th>
+      <th>Exit Price</th>
+      <th>Profit</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data; trackBy: trackByFn">
+      <td>{{ data.entryDate | date: 'MM-dd-YYYY HH:MM:ss' }}</td>
+      <td>{{ data.exitDate | date: 'MM-dd-YYYY HH:MM:ss' }}</td>
+      <td>{{ data.entryPrice }}</td>
+      <td>{{ data.exitPrice }}</td>
+      <td>{{ data.exitPrice - data.entryPrice | number: '.4' }}</td>
+      <td class="actions">
+        <button (click)="edit.emit(data)" nz-button nzType="primary">
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </button>
+        <button
+          (nzOnConfirm)="delete.emit(data.id)"
+          nz-button
+          nzDanger
+          nz-popconfirm
+          nzPopconfirmTitle="Are you sure?"
+          [nzPopconfirmShowArrow]="false"
+        >
+          <span nz-icon nzType="delete" nzTheme="outline"></span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
