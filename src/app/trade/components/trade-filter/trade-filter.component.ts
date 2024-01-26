@@ -16,7 +16,6 @@ export class TradeFilterComponent implements OnInit {
     exitDate: this.fb.control(null),
     entryPrice: this.fb.control(null),
     exitPrice: this.fb.control(null),
-    profit: this.fb.control(null),
   });
 
   ngOnInit() {

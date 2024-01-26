@@ -11,6 +11,7 @@ import { ITradeRow } from '../../types/trade-row';
 import { CustomValidators } from '../../../shared/services/CustomValidators';
 import { updateValueAndValidity } from '../../../shared/helpers/update-value-and-validity';
 import { range } from '../../../shared/helpers/range';
+import { Errors } from '../../../shared/constants/errors';
 
 @Component({
   selector: 'app-trade-form',
@@ -32,7 +33,12 @@ export class TradeFormComponent implements OnInit {
       entryPrice: this.fb.control<number | null>(null, [Validators.required]),
       exitPrice: this.fb.control<number | null>(null, [Validators.required]),
     },
-    { validators: CustomValidators.dateLessThan('entryDate', 'exitDate') },
+    {
+      validators: [
+        CustomValidators.dateLessThan('entryDate', 'exitDate'),
+        CustomValidators.numberLessThan('entryPrice', 'exitPrice'),
+      ],
+    },
   );
   startOfDay = startOfDay(Date.now()).getTime();
   entryDateDisabledDate: (current: Date) => boolean = date => date.getTime() < this.startOfDay;
@@ -93,6 +99,7 @@ export class TradeFormComponent implements OnInit {
         ? range(0, this.form.controls.entryDate.value!.getSeconds())
         : [],
   });
+  errors = Errors;
 
   ngOnInit() {
     this.title = this.data ? 'Edit' : 'Create';

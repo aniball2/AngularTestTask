@@ -3,5 +3,4 @@ export interface ITradeFilters {
   exitDate: Date | null;
   entryPrice: number | null;
   exitPrice: number | null;
-  profit: number | null;
 }

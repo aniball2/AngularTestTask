@@ -1,44 +1,58 @@
 <nz-modal [nzVisible]="true" [nzTitle]="title" (nzOnCancel)="this.cancel.emit()" (nzOnOk)="send()">
   <form nz-form [formGroup]="form" (ngSubmit)="send()" *nzModalContent>
-    <div class="validation-error">
-      {{ form.getError('dates') && 'Entry Date should be less than Exit Date' }}
-    </div>
+    <nz-form-item class="validation-error" *ngIf="form.errors">
+      <nz-form-label [nzSm]="6" [nzXs]="24" [nzNoColon]="true"></nz-form-label>
+      <div *ngIf="form.getError('dates')">{{ errors.dates }}</div>
+      <div *ngIf="form.getError('numberLessThan')">{{ errors.numberLessThan }}</div>
+    </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">Entry Date</nz-form-label>
-      <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-form-control [nzSm]="16" [nzXs]="24" [nzErrorTip]="entryDateErrorTpl">
         <nz-date-picker
           nzShowTime
           formControlName="entryDate"
           [nzDisabledDate]="entryDateDisabledDate"
           [nzDisabledTime]="entryDateDisabledDateTime"
         ></nz-date-picker>
+        <ng-template #entryDateErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">{{ errors.required }}</ng-container>
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">Entry Price</nz-form-label>
-      <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-form-control [nzSm]="16" [nzXs]="24" [nzErrorTip]="entryPriceErrorTpl">
         <nz-input-number formControlName="entryPrice" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
+        <ng-template #entryPriceErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">{{ errors.required }}</ng-container>
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">Exit Date</nz-form-label>
-      <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-form-control [nzSm]="16" [nzXs]="24" [nzErrorTip]="exitDateErrorTpl">
         <nz-date-picker
           nzShowTime
           formControlName="exitDate"
           [nzDisabledDate]="exitDateDisabledDate"
           [nzDisabledTime]="exitDateDisabledDateTime"
         ></nz-date-picker>
+        <ng-template #exitDateErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">{{ errors.required }}</ng-container>
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">Exit Price</nz-form-label>
-      <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-form-control [nzSm]="16" [nzXs]="24" [nzErrorTip]="exitPriceErrorTpl">
         <nz-input-number formControlName="exitPrice" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
+        <ng-template #exitPriceErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">{{ errors.required }}</ng-container>
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
   </form>

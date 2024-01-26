@@ -15,8 +15,8 @@ export class TradeStateService {
     entryPrice: null,
     exitDate: null,
     exitPrice: null,
-    profit: null,
   });
+
   private _rows$ = new BehaviorSubject<ITradeRow[]>([]);
   rows$ = combineLatest([this._rows$.asObservable(), this.filter$]).pipe(
     map(([rows, filter]) => {
@@ -28,10 +28,6 @@ export class TradeStateService {
 
           if (filter.entryPrice !== null) {
             return row.entryPrice >= filter.entryPrice;
-          }
-
-          if (filter.profit !== null) {
-            return row.exitPrice - row.entryPrice >= filter.profit;
           }
 
           if (filter.entryDate !== null) {
