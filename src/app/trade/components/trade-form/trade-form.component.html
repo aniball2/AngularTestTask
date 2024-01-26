@@ -5,7 +5,7 @@
     </div>
 
     <nz-form-item>
-      <nz-form-label>Entry Date</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Entry Date</nz-form-label>
       <nz-form-control [nzSm]="16" [nzXs]="24">
         <nz-date-picker
           nzShowTime
@@ -17,7 +17,14 @@
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label>Exit Date</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Entry Price</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-input-number formControlName="entryPrice" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Exit Date</nz-form-label>
       <nz-form-control [nzSm]="16" [nzXs]="24">
         <nz-date-picker
           nzShowTime
@@ -29,14 +36,7 @@
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label>Entry Price</nz-form-label>
-      <nz-form-control [nzSm]="16" [nzXs]="24">
-        <nz-input-number formControlName="entryPrice" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label>Exit Price</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Exit Price</nz-form-label>
       <nz-form-control [nzSm]="16" [nzXs]="24">
         <nz-input-number formControlName="exitPrice" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
       </nz-form-control>

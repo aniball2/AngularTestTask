@@ -1,5 +1,8 @@
-<app-trade-filter (updateFilters)="state.updateFilters($event)"></app-trade-filter>
-<button class="create-btn" nz-button nzType="primary" (click)="openForm()">Create</button>
+<div class="filters">
+  <app-trade-filter (updateFilters)="state.updateFilters($event)"></app-trade-filter>
+  <button class="create-btn" nz-button nzType="primary" (click)="openForm()">Create</button>
+</div>
+
 <app-trade-table
   [rows]="(state.rows$ | async)!"
   (edit)="openForm($event)"

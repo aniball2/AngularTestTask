@@ -35,11 +35,11 @@ export class TradeStateService {
           }
 
           if (filter.entryDate !== null) {
-            return new Date(row.entryDate).getTime() >= filter.entryDate.getDate();
+            return new Date(row.entryDate).getTime() >= filter.entryDate.getTime();
           }
 
           if (filter.exitDate !== null) {
-            return new Date(row.exitDate).getTime() >= filter.exitDate.getDate();
+            return new Date(row.exitDate).getTime() >= filter.exitDate.getTime();
           }
 
           return row;
