@@ -8,7 +8,7 @@ import { DisabledTimeFn } from 'ng-zorro-antd/date-picker';
 
 import { ITradeFrom } from '../../types/trade-form';
 import { ITradeRow } from '../../types/trade-row';
-import { CustomValidators } from '../../../shared/services/CustomValidators';
+import { CustomValidators } from '../../../shared/services/custom-validators';
 import { updateValueAndValidity } from '../../../shared/helpers/update-value-and-validity';
 import { range } from '../../../shared/helpers/range';
 import { Errors } from '../../../shared/constants/errors';
