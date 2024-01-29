@@ -19,6 +19,7 @@ import {
 } from 'ng-apexcharts';
 import { ITradeRow } from '../../types/trade-row';
 import { formatDate } from '@angular/common';
+import { amountOfProfit } from '../../helpers/amount-of-profit';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -83,7 +84,7 @@ export class TradeChartComponent implements OnChanges {
         item.exitDate ? formatDate(item.exitDate, 'MM-dd-YYYY HH:MM:ss', 'en') : '',
       );
       this.chartOptions.series![0].data = this.data.reduce<number[]>((acc, item) => {
-        const amount = +(item.exitPrice - item.entryPrice).toFixed(2);
+        const amount = +amountOfProfit(item).toFixed(2);
         acc.push((acc[acc.length - 1] || 0) + amount);
         return acc;
       }, []);

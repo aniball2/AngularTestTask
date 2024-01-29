@@ -6,6 +6,18 @@
     </nz-form-item>
 
     <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Ticker</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24" [nzErrorTip]="tickerErrorTpl">
+        <nz-select formControlName="ticker">
+          <nz-option *ngFor="let item of tickers" [nzValue]="item" [nzLabel]="$any(item.label)"></nz-option>
+        </nz-select>
+        <ng-template #tickerErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">{{ errors.required }}</ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">Entry Date</nz-form-label>
       <nz-form-control [nzSm]="16" [nzXs]="24" [nzErrorTip]="entryDateErrorTpl">
         <nz-date-picker
@@ -31,6 +43,23 @@
           nzPrecisionMode="cut"
         ></nz-input-number>
         <ng-template #entryPriceErrorTpl let-control>
+          <div *ngIf="control.hasError('required')">{{ errors.required }}</div>
+          <div *ngIf="control.hasError('min')">{{ errors.numberGreaterZero }}</div>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">Quantity</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24" [nzErrorTip]="quantityPriceErrorTpl">
+        <nz-input-number
+          formControlName="quantity"
+          [nzMin]="0"
+          [nzStep]="1"
+          [nzPrecision]="0"
+          nzPrecisionMode="cut"
+        ></nz-input-number>
+        <ng-template #quantityPriceErrorTpl let-control>
           <div *ngIf="control.hasError('required')">{{ errors.required }}</div>
           <div *ngIf="control.hasError('min')">{{ errors.numberGreaterZero }}</div>
         </ng-template>

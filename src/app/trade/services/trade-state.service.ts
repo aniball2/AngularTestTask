@@ -16,6 +16,8 @@ export class TradeStateService {
     entryPrice: 0,
     exitPrice: 0,
     createdAt: '',
+    ticker: { label: '', value: null },
+    quantity: 0,
   };
 
   private _rows$ = new BehaviorSubject<ITradeRow[]>([]);
@@ -40,6 +42,7 @@ export class TradeStateService {
       entryDate: faker.date.past().toISOString(),
       exitDate: faker.date.future().toISOString(),
       createdAt: new Date().toISOString(),
+      quantity: faker.number.int(),
       entryPrice:
         faker.number.float({
           min: 0,
@@ -50,6 +53,10 @@ export class TradeStateService {
           min: 0,
           fractionDigits: 3,
         }) * 10,
+      ticker: {
+        label: faker.company.name(),
+        value: faker.company.name(),
+      },
     });
     this._rows$.next(
       faker.helpers.multiple(row, {
@@ -72,6 +79,8 @@ export class TradeStateService {
         entryDate: value.entryDate.toISOString(),
         entryPrice: value.entryPrice,
         id: faker.string.uuid(),
+        ticker: value.ticker,
+        quantity: value.quantity,
       },
     ];
     this._rows$.next(rows);
@@ -87,6 +96,8 @@ export class TradeStateService {
           entryPrice: value.entryPrice,
           id: item.id,
           createdAt: item.createdAt,
+          quantity: item.quantity,
+          ticker: item.ticker,
         };
       }
 

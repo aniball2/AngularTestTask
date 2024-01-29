@@ -12,6 +12,8 @@ import { CustomValidators } from '../../../shared/services/custom-validators';
 import { updateValueAndValidity } from '../../../shared/helpers/update-value-and-validity';
 import { range } from '../../../shared/helpers/range';
 import { Errors } from '../../../shared/constants/errors';
+import { tickers } from '../../../shared/constants/tickers';
+import { ISelect } from '../../../shared/types/ISelect';
 
 @Component({
   selector: 'app-trade-form',
@@ -23,6 +25,7 @@ export class TradeFormComponent implements OnInit {
   @Input() data: ITradeRow | null = null;
   @Output() submit = new EventEmitter<ITradeFrom>();
   @Output() cancel = new EventEmitter<void>();
+  tickers = tickers;
   title = '';
   fb = inject(FormBuilder);
   form = this.fb.nonNullable.group(
@@ -32,6 +35,8 @@ export class TradeFormComponent implements OnInit {
       exitDate: this.fb.control<Date | null>(null, [Validators.required]),
       entryPrice: this.fb.control<number | null>(null, [Validators.required, Validators.min(0)]),
       exitPrice: this.fb.control<number | null>(null, [Validators.required, Validators.min(0)]),
+      quantity: this.fb.control<number | null>(null, [Validators.required, Validators.min(0)]),
+      ticker: this.fb.control<ISelect | null>(null, [Validators.required]),
     },
     {
       validators: [CustomValidators.dateLessThan('entryDate', 'exitDate')],
@@ -108,6 +113,8 @@ export class TradeFormComponent implements OnInit {
         exitDate: new Date(this.data.exitDate),
         exitPrice: this.data.exitPrice,
         id: this.data.id,
+        ticker: this.data.ticker,
+        quantity: this.data.quantity,
       });
     }
   }

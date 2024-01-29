@@ -13,6 +13,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 import { routes } from './trade.routes';
 import { icons } from '../icons-provider';
@@ -21,9 +22,17 @@ import { TradeTableComponent } from './components/trade-table/trade-table.compon
 import { TradeFormComponent } from './components/trade-form/trade-form.component';
 import { TradeChartComponent } from './components/trade-chart/trade-chart.component';
 import { ChartPageComponent } from './pages/chart-page/chart-page.component';
+import { AmountOfProfitPipe } from './pipes/amount-of-profit.pipe';
 
 @NgModule({
-  declarations: [TradePageComponent, TradeTableComponent, TradeFormComponent, TradeChartComponent, ChartPageComponent],
+  declarations: [
+    TradePageComponent,
+    TradeTableComponent,
+    TradeFormComponent,
+    TradeChartComponent,
+    ChartPageComponent,
+    AmountOfProfitPipe,
+  ],
   imports: [
     CommonModule,
     NzTableModule,
@@ -38,6 +47,7 @@ import { ChartPageComponent } from './pages/chart-page/chart-page.component';
     NzModalModule,
     NgApexchartsModule,
     NzEmptyModule,
+    NzSelectModule,
   ],
   providers: [provideRouter(routes)],
 })
