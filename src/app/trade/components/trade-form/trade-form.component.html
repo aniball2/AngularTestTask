@@ -8,9 +8,7 @@
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">Ticker</nz-form-label>
       <nz-form-control [nzSm]="16" [nzXs]="24" [nzErrorTip]="tickerErrorTpl">
-        <nz-select formControlName="ticker">
-          <nz-option *ngFor="let item of tickers" [nzValue]="item" [nzLabel]="$any(item.label)"></nz-option>
-        </nz-select>
+        <input nz-input formControlName="ticker" />
         <ng-template #tickerErrorTpl let-control>
           <ng-container *ngIf="control.hasError('required')">{{ errors.required }}</ng-container>
         </ng-template>

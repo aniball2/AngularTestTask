@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of table.data; trackBy: trackByFn">
-      <td>{{ data.ticker.label }}</td>
+      <td>{{ data.ticker }}</td>
       <td>{{ data.entryDate | date: 'MM-dd-YYYY HH:MM:ss' }}</td>
       <td>{{ data.entryPrice | number: '.2' }}</td>
       <td>{{ data.quantity }}</td>

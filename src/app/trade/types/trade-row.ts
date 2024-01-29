@@ -1,5 +1,3 @@
-import { ISelect } from '../../shared/types/ISelect';
-
 export interface ITradeRow {
   id: string;
   entryDate: string;
@@ -7,6 +5,6 @@ export interface ITradeRow {
   entryPrice: number;
   exitPrice: number;
   createdAt: string;
-  ticker: ISelect;
+  ticker: string;
   quantity: number;
 }

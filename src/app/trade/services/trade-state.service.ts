@@ -16,7 +16,7 @@ export class TradeStateService {
     entryPrice: 0,
     exitPrice: 0,
     createdAt: '',
-    ticker: { label: '', value: null },
+    ticker: '',
     quantity: 0,
   };
 
@@ -53,10 +53,7 @@ export class TradeStateService {
           min: 0,
           fractionDigits: 3,
         }) * 10,
-      ticker: {
-        label: faker.company.name(),
-        value: faker.company.name(),
-      },
+      ticker: faker.company.name(),
     });
     this._rows$.next(
       faker.helpers.multiple(row, {

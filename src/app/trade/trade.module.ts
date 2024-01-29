@@ -13,7 +13,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
-import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 import { routes } from './trade.routes';
 import { icons } from '../icons-provider';
@@ -47,7 +47,7 @@ import { AmountOfProfitPipe } from './pipes/amount-of-profit.pipe';
     NzModalModule,
     NgApexchartsModule,
     NzEmptyModule,
-    NzSelectModule,
+    NzInputModule,
   ],
   providers: [provideRouter(routes)],
 })
