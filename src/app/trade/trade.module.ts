@@ -18,20 +18,12 @@ import { routes } from './trade.routes';
 import { icons } from '../icons-provider';
 import { TradePageComponent } from './pages/trades-page/trade-page.component';
 import { TradeTableComponent } from './components/trade-table/trade-table.component';
-import { TradeFilterComponent } from './components/trade-filter/trade-filter.component';
 import { TradeFormComponent } from './components/trade-form/trade-form.component';
 import { TradeChartComponent } from './components/trade-chart/trade-chart.component';
 import { ChartPageComponent } from './pages/chart-page/chart-page.component';
 
 @NgModule({
-  declarations: [
-    TradePageComponent,
-    TradeTableComponent,
-    TradeFilterComponent,
-    TradeFormComponent,
-    TradeChartComponent,
-    ChartPageComponent,
-  ],
+  declarations: [TradePageComponent, TradeTableComponent, TradeFormComponent, TradeChartComponent, ChartPageComponent],
   imports: [
     CommonModule,
     NzTableModule,

@@ -1,5 +1,5 @@
 <apx-chart
-  *ngIf="data.length; else empty"
+  *ngIf="data.length && data.length > 1; else empty"
   [series]="chartOptions.series!"
   [chart]="chartOptions.chart!"
   [xaxis]="chartOptions.xaxis!"

@@ -1,7 +1,4 @@
-<div class="filters">
-  <app-trade-filter (updateFilters)="state.updateFilters($event)"></app-trade-filter>
-  <button class="create-btn" nz-button nzType="primary" (click)="openForm()">Create</button>
-</div>
+<button class="create-btn" nz-button nzType="primary" (click)="openForm()">Create</button>
 
 <app-trade-table
   [rows]="(state.rows$ | async)!"

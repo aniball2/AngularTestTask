@@ -80,10 +80,11 @@ export class TradeChartComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['data']?.currentValue) {
       this.chartOptions.xaxis!.categories = this.data.map(item =>
-        formatDate(item.exitDate, 'MM-dd-YYYY HH:MM:ss', 'en'),
+        item.exitDate ? formatDate(item.exitDate, 'MM-dd-YYYY HH:MM:ss', 'en') : '',
       );
       this.chartOptions.series![0].data = this.data.reduce<number[]>((acc, item) => {
-        acc.push(item.exitPrice - item.entryPrice);
+        const amount = +(item.exitPrice - item.entryPrice).toFixed(2);
+        acc.push(amount);
         return acc;
       }, []);
       this.cdr.detectChanges();

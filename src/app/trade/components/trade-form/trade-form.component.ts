@@ -30,14 +30,11 @@ export class TradeFormComponent implements OnInit {
       id: this.fb.control<string | null>(null),
       entryDate: this.fb.control<Date | null>(null, [Validators.required]),
       exitDate: this.fb.control<Date | null>(null, [Validators.required]),
-      entryPrice: this.fb.control<number | null>(null, [Validators.required]),
-      exitPrice: this.fb.control<number | null>(null, [Validators.required]),
+      entryPrice: this.fb.control<number | null>(null, [Validators.required, Validators.min(0)]),
+      exitPrice: this.fb.control<number | null>(null, [Validators.required, Validators.min(0)]),
     },
     {
-      validators: [
-        CustomValidators.dateLessThan('entryDate', 'exitDate'),
-        CustomValidators.numberLessThan('entryPrice', 'exitPrice'),
-      ],
+      validators: [CustomValidators.dateLessThan('entryDate', 'exitDate')],
     },
   );
   startOfDay = startOfDay(Date.now()).getTime();
@@ -107,7 +104,7 @@ export class TradeFormComponent implements OnInit {
     if (this.data) {
       this.form.setValue({
         entryDate: new Date(this.data.entryDate),
-        entryPrice: this.data.exitPrice,
+        entryPrice: this.data.entryPrice,
         exitDate: new Date(this.data.exitDate),
         exitPrice: this.data.exitPrice,
         id: this.data.id,

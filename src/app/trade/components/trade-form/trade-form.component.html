@@ -3,7 +3,6 @@
     <nz-form-item class="validation-error" *ngIf="form.errors">
       <nz-form-label [nzSm]="6" [nzXs]="24" [nzNoColon]="true"></nz-form-label>
       <div *ngIf="form.getError('dates')">{{ errors.dates }}</div>
-      <div *ngIf="form.getError('numberLessThan')">{{ errors.numberLessThan }}</div>
     </nz-form-item>
 
     <nz-form-item>
@@ -24,9 +23,16 @@
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">Entry Price</nz-form-label>
       <nz-form-control [nzSm]="16" [nzXs]="24" [nzErrorTip]="entryPriceErrorTpl">
-        <nz-input-number formControlName="entryPrice" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
+        <nz-input-number
+          formControlName="entryPrice"
+          [nzMin]="0"
+          [nzStep]="0.1"
+          [nzPrecision]="2"
+          nzPrecisionMode="cut"
+        ></nz-input-number>
         <ng-template #entryPriceErrorTpl let-control>
-          <ng-container *ngIf="control.hasError('required')">{{ errors.required }}</ng-container>
+          <div *ngIf="control.hasError('required')">{{ errors.required }}</div>
+          <div *ngIf="control.hasError('min')">{{ errors.numberGreaterZero }}</div>
         </ng-template>
       </nz-form-control>
     </nz-form-item>
@@ -49,9 +55,16 @@
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">Exit Price</nz-form-label>
       <nz-form-control [nzSm]="16" [nzXs]="24" [nzErrorTip]="exitPriceErrorTpl">
-        <nz-input-number formControlName="exitPrice" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
+        <nz-input-number
+          formControlName="exitPrice"
+          [nzMin]="0"
+          [nzStep]="0.1"
+          [nzPrecision]="2"
+          nzPrecisionMode="cut"
+        ></nz-input-number>
         <ng-template #exitPriceErrorTpl let-control>
-          <ng-container *ngIf="control.hasError('required')">{{ errors.required }}</ng-container>
+          <div *ngIf="control.hasError('required')">{{ errors.required }}</div>
+          <div *ngIf="control.hasError('min')">{{ errors.numberGreaterZero }}</div>
         </ng-template>
       </nz-form-control>
     </nz-form-item>

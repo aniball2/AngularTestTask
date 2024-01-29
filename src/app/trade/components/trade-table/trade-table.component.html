@@ -13,9 +13,9 @@
     <tr *ngFor="let data of table.data; trackBy: trackByFn">
       <td>{{ data.entryDate | date: 'MM-dd-YYYY HH:MM:ss' }}</td>
       <td>{{ data.exitDate | date: 'MM-dd-YYYY HH:MM:ss' }}</td>
-      <td>{{ data.entryPrice }}</td>
-      <td>{{ data.exitPrice }}</td>
-      <td>{{ data.exitPrice - data.entryPrice | number: '.4' }}</td>
+      <td>{{ data.entryPrice | number: '.2' }}</td>
+      <td>{{ data.exitPrice | number: '.2' }}</td>
+      <td>{{ data.exitPrice - data.entryPrice | number: '.2' }}</td>
       <td class="actions">
         <button (click)="edit.emit(data)" nz-button nzType="primary">
           <span nz-icon nzType="edit" nzTheme="outline"></span>

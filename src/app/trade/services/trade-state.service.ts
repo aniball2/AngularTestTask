@@ -2,49 +2,36 @@ import { Injectable } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
 import { ITradeRow } from '../types/trade-row';
-import { ITradeFilters } from '../types/trade-filters';
-import { BehaviorSubject, combineLatest, map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { ITradeFrom } from '../types/trade-form';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TradeStateService {
-  filter$ = new BehaviorSubject<ITradeFilters>({
-    entryDate: null,
-    entryPrice: null,
-    exitDate: null,
-    exitPrice: null,
-  });
+  initialBalance: ITradeRow = {
+    id: '',
+    entryDate: '',
+    exitDate: '',
+    entryPrice: 0,
+    exitPrice: 0,
+    createdAt: '',
+  };
 
   private _rows$ = new BehaviorSubject<ITradeRow[]>([]);
-  rows$ = combineLatest([this._rows$.asObservable(), this.filter$]).pipe(
-    map(([rows, filter]) => {
-      return rows
-        .filter(row => {
-          if (filter.exitPrice !== null) {
-            return row.exitPrice >= filter.exitPrice;
-          }
-
-          if (filter.entryPrice !== null) {
-            return row.entryPrice >= filter.entryPrice;
-          }
-
-          if (filter.entryDate !== null) {
-            return new Date(row.entryDate).getTime() >= filter.entryDate.getTime();
-          }
-
-          if (filter.exitDate !== null) {
-            return new Date(row.exitDate).getTime() >= filter.exitDate.getTime();
-          }
-
-          return row;
-        })
-        .sort((prev, curr) => new Date(curr.createdAt).getTime() - new Date(prev.createdAt).getTime());
+  rows$ = this._rows$.asObservable().pipe(
+    map(rows => {
+      return rows.sort((prev, curr) => new Date(curr.createdAt).getTime() - new Date(prev.createdAt).getTime());
+    }),
+  );
+  chartData = this._rows$.asObservable().pipe(
+    map(rows => {
+      const sorted = rows.sort((prev, curr) => new Date(prev.exitDate).getTime() - new Date(curr.exitDate).getTime());
+      return [this.initialBalance, ...sorted];
     }),
   );
   constructor() {
-    // this.generate(5);
+    // this.generate(15);
   }
 
   generate(count: number) {
@@ -56,12 +43,12 @@ export class TradeStateService {
       entryPrice:
         faker.number.float({
           min: 0,
-          fractionDigits: 4,
+          fractionDigits: 3,
         }) * 10,
       exitPrice:
         faker.number.float({
           min: 0,
-          fractionDigits: 4,
+          fractionDigits: 3,
         }) * 10,
     });
     this._rows$.next(
@@ -69,11 +56,6 @@ export class TradeStateService {
         count,
       }),
     );
-    this.filter$.next(this.filter$.value);
-  }
-
-  updateFilters(filter: ITradeFilters) {
-    this.filter$.next(filter);
   }
 
   delete(id: string) {
