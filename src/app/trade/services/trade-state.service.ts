@@ -24,7 +24,7 @@ export class TradeStateService {
       return rows.sort((prev, curr) => new Date(curr.createdAt).getTime() - new Date(prev.createdAt).getTime());
     }),
   );
-  chartData = this._rows$.asObservable().pipe(
+  chartData$ = this._rows$.asObservable().pipe(
     map(rows => {
       const sorted = rows.sort((prev, curr) => new Date(prev.exitDate).getTime() - new Date(curr.exitDate).getTime());
       return [this.initialBalance, ...sorted];

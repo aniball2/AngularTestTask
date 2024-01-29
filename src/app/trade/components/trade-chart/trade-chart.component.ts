@@ -84,7 +84,7 @@ export class TradeChartComponent implements OnChanges {
       );
       this.chartOptions.series![0].data = this.data.reduce<number[]>((acc, item) => {
         const amount = +(item.exitPrice - item.entryPrice).toFixed(2);
-        acc.push(amount);
+        acc.push((acc[acc.length - 1] || 0) + amount);
         return acc;
       }, []);
       this.cdr.detectChanges();
